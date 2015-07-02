@@ -1,0 +1,144 @@
+* { font-family: "Helvetica Neue", Helvetica, Arial; }
+
+.container {
+	margin: 6px auto;
+	width: 95%;
+	}
+
+header.intro { margin-bottom: 30px; }
+.text-left { text-align: left; }
+.text-right { text-align: right; }
+
+table { 
+	width: 100%;
+	margin-bottom: 50px;
+	table-layout: fixed; 
+	}
+
+.float-left { float: left; position: absolute; }
+.float-right { float: right; }
+.thin { font-weight: 200; }
+.italic { font-style: italic; }
+.underline { text-decoration: underline; }
+.left-border { border-left: 1px dotted; }
+.right-border { border-right: 1px dotted; }
+.reports > * { font-size: 10px; }
+
+.agency {
+	font-weight: 700;
+	height: 20px;
+	font-size: 12px;
+	padding-left: 10px;
+	padding-right: 30px;
+	background-color: #000;
+	color: #FFF;
+	text-align: left;
+	border-right: 1px solid #000;
+	}
+
+.continuum {
+	font-weight: 700;
+	height: 20px;
+	font-size: 12px;	
+	padding-left: 10px;
+	padding-right: 30px;
+	background-color: #f2bced;
+	}
+
+.program {
+	height: 20px;
+	font-size: 12px;	
+	padding-left: 10px;
+	padding-right: 15px;
+	background-color: #d8effe;
+	border-bottom: 2px solid #000;
+	text-align: left;
+	padding-top: 1px;
+	}
+
+.typecode {
+	font-weight: 100;
+	font-style: italic;
+	}
+
+.subheadings {
+	padding-bottom: 3px;
+	margin-bottom: 2px;
+	font-weight: 700;
+	text-align: center;
+	font-style: italic;
+	font-size: 11px;
+	border-bottom: 1px solid;
+	background-color: #ebebeb;
+
+	}
+
+td {
+	padding-right:  20px;
+	border-left:  1px dotted black;
+	}
+
+
+
+.fieldname {
+	font-weight: 700;
+	padding-left: 10px;
+	padding-right: 20px;
+	/*border-left:  1px dotted black;*/
+	border-bottom:  0px;
+	}
+
+.fieldvals {
+	/*padding-left: 10px;*/
+	/*padding-right: 30px;*/
+	float: right;
+	text-align: center;
+
+	}
+
+/*td.quality  {
+	width: 25%;
+	}*/
+
+.col {
+	width: 50%;
+	display: inline-block;
+	}
+
+.col.float-left {
+	margin-right: 25%;
+	}
+
+.score {
+	text-align: center;
+	background-color: #fed8ef;
+	/*border: 2px solid #ada6ee;*/
+	padding: 20px;
+	color: #d20581;
+	border-right:  1px dotted black;
+
+	}
+
+.score-num { font-size: 22px; }
+
+
+.mini-score {
+	/*text-align: center;*/
+	background-color: #ada6ee;
+	border: 0px;
+	/*padding: 20px;*/
+	color: #FFF;
+	
+	}
+
+.mini-score-num { 
+	font-size: 18px; 
+	/*background-color: #ada6ee;*/
+	/*border: 3px solid #ada6ee;*/
+	/*border-right:  1px dotted black;*/
+
+	}
+
+.mini-percent {
+	font-size: 16px;
+	}

@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>{{.Title}}</title>
+	<link rel="stylesheet" type="text/css" href="static/style.css">
+</head>
+<body>
+<div class="container">
+	<header class="intro">
+		<h2>{{.Title}}</h2>
+		<h3 class="thin italic"><span class="underline">{{.SubTitle}}</span> - {{month .Month}} {{.Year}}</h3>
+	</header>
+	{{$October := .PITs.October}}
+	{{$January := .PITs.January}}
+	{{$April := .PITs.April}}
+	{{$July := .PITs.July}}
+
+
+
+<!-- 	<div class="reports">
+		{{with .Continuum}}
+			<table class="card-title">
+				<tr>
+					<td class="agency">King County</td>
+					<td class="continuum">Continuum of Care</td>
+				</tr>
+			</table>
+			<table class="card-content">
+				<tr><td class="fieldname">NumberBeds:</td><td> {{.NumberBeds}}</td></tr>
+				<tr><td class="fieldname">NumberUnits:</td><td> {{.NumberUnits}}</td></tr>
+				<tr><td class="fieldname">ServedClients:</td><td> {{.ServedClients}}</td></tr>
+				<tr><td class="fieldname">NewClients:</td><td> {{.NewClients}}</td></tr>
+				<tr><td class="fieldname">ExitedClients:</td><td> {{.ExitedClients}}</td></tr>
+				<tr><td class="fieldname">ServedHouseholds:</td><td> {{.ServedHouseholds}}</td></tr>
+				<tr><td class="fieldname">FullName:</td><td> {{.FullName}} (<i>{{rate .FullName .ServedClients}}%</i>)</td></tr>
+				<tr><td class="fieldname">SocialSecurity:</td><td> {{.SocialSecurity}} (<i>{{rate .SocialSecurity .ServedClients}}%</i>)</td></tr>
+				<tr><td class="fieldname">HeadHousehold:</td><td> {{.HeadHousehold}} (<i>{{rate .HeadHousehold .ServedClients}}%</i>)</td></tr>
+				<tr><td class="fieldname">BirthDate:</td><td> {{.BirthDate}} (<i>{{rate .BirthDate .ServedClients}}%</i>)</td></tr>
+				<tr><td class="fieldname">Race:</td><td> {{.Race}} (<i>{{rate .Race .ServedClients}}%</i>)</td></tr>
+				<tr><td class="fieldname">Ethnicity:</td><td> {{.Ethnicity}} (<i>{{rate .Ethnicity .ServedClients}}%</i>)</td></tr>
+				<tr><td class="fieldname">Gender:</td><td> {{.Gender}} (<i>{{rate .Gender .ServedClients}}%</i>)</td></tr>
+				<tr><td class="fieldname">VeteranStatus:</td><td> {{.VeteranStatus}} (<i>{{rate .VeteranStatus .ServedClients}}%</i>)</td></tr>
+				<tr><td class="fieldname">DisabilityStatus:</td><td> {{.DisabilityStatus}} (<i>{{rate .DisabilityStatus .ServedClients}}%</i>)</td></tr>
+				<tr><td class="fieldname">SubstanceAbuse:</td><td> {{.SubstanceAbuse}} (<i>{{rate .SubstanceAbuse .ServedClients}}%</i>)</td></tr>
+				<tr><td class="fieldname">PriorLiving:</td><td> {{.PriorLiving}} (<i>{{rate .PriorLiving .ServedClients}}%</i>)</td></tr>
+				<tr><td class="fieldname">ClientZip:</td><td> {{.ClientZip}} (<i>{{rate .ClientZip .ServedClients}}%</i>)</td></tr>
+				<tr><td class="fieldname">ChronicityStatus:</td><td> {{.ChronicityStatus}} (<i>{{rate .ChronicityStatus .ServedClients}}%</i>)</td></tr>
+				<tr><td class="fieldname">QualityScore:</td><td> {{round .QualityScore 1}}%</td></tr>
+			</table>
+		{{end}}
+	</div> -->
+	<div class="reports">
+		{{with .Cards}}
+			{{range .}}
+			<table rules="groups">
+				<thead>
+					<tr class="">
+						<th class="agency card-title" colspan="2">{{.Agency}} ({{acronym .Agency ""}})</th>
+						<th class="program" colspan="7"><span class="name">{{crop .ProgramName 3}}</span><span class="typecode float-right" >{{.ProgramType}}</span></th>
+
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td class="left-border subheadings" colspan="2">Program Info</td>
+						<td class="left-border subheadings">Utilization Rates</td>
+
+						<td class="subheadings">Beds</td>
+						<td class="subheadings">Units</td>
+						<td class="subheadings" colspan="3">Data Quality</td>
+						<td class="fieldname score" rowspan="5">
+							<span class="score-num">{{round .QualityScore 1}}</span> <span class="mini-percent">%</span>
+							<br><br>Quality Score
+						</td>
+
+					</tr>
+					<tr>
+						<td><span class="fieldname">TargetPops:</span><span class="fieldvals"> {{comma .TargetPops}}</span></td>
+ 						<td><span class="fieldname">NewClients:</span><span class="fieldvals"> {{.NewClients}}</span></td>
+
+						<td><span class="fieldname">Oct {{$October}}, 2014</span></td>
+						<td><span class="fieldvals"> {{.ClientsPITOctober}} (<i>{{rate .ClientsPITOctober .NumberBeds}}%</i>)</span></td>
+						<td><span class="fieldvals"> {{.HouseholdsPITOctober}} (<i>{{rate .HouseholdsPITOctober .NumberUnits}}%</i>)</span></td>
+
+						<td class="quality">
+							<span class="fieldname">FullName:</span>
+							<span class="fieldvals"> {{.FullName}} (<i>{{rate .FullName .ServedClients}}%</i>)</span>
+						</td>
+						<td class="quality">
+							<span class="fieldname">SocialSecurity:</span>
+							<span class="fieldvals"> {{.SocialSecurity}} (<i>{{rate .SocialSecurity .ServedClients}}%</i>)</span>
+						</td>
+						<td class="quality">
+							<span class="fieldname">ClientZip:</span>
+							<span class="fieldvals"> {{.ClientZip}} (<i>{{rate .ClientZip .ServedClients}}%</i>)</span>
+						</td>
+<!-- 						<td class="fieldname score" rowspan="4">
+							<span class="score-num">{{round .QualityScore 1}}</span> <span class="mini-percent">%</span>
+							<br><br>Quality Score
+						</td> -->
+
+					</tr>
+					<tr>
+						<td><span class="fieldname">NumberBeds:</span><span class="fieldvals"> {{.NumberBeds}}</span></td>
+						<td><span class="fieldname">ExitedClients:</span><span class="fieldvals"> {{.ExitedClients}}</span></td>
+
+
+						<td><span class="fieldname">Jan {{$January}}, 2015</span></td>
+						<td><span class="fieldvals"> {{.ClientsPITJanuary}} (<i>{{rate .ClientsPITJanuary .NumberBeds}}%</i>)</span></td>
+						<td><span class="fieldvals"> {{.HouseholdsPITJanuary}} (<i>{{rate .HouseholdsPITJanuary .NumberUnits}}%</i>)</span></td>
+
+						<td class="quality">
+							<span class="fieldname">VeteranStatus:</span>
+							<span class="fieldvals"> {{.VeteranStatus}} (<i>{{rate .VeteranStatus .ServedClients}}%</i>)</span>
+						</td>
+						<td class="quality">
+							<span class="fieldname">DisabilityStatus:</span>
+							<span class="fieldvals"> {{.DisabilityStatus}} (<i>{{rate .DisabilityStatus .ServedClients}}%</i>)</span>
+						</td>
+						<td class="quality">
+							<span class="fieldname">Gender:</span>
+							<span class="fieldvals"> {{.Gender}} (<i>{{rate .Gender .ServedClients}}%</i>)</span>
+						</td>
+
+					</tr>
+					<tr>
+						<td><span class="fieldname">NumberUnits:</span><span class="fieldvals"> {{.NumberUnits}}</span></td>
+						<td><span class="fieldname">ServedHouseholds:</span><span class="fieldvals"> {{.ServedHouseholds}}</span></td>
+						
+						<td><span class="fieldname">Apr {{$April}}, 2015</span></td>
+						<td><span class="fieldvals"> {{.ClientsPITApril}} (<i>{{rate .ClientsPITApril .NumberBeds}}%</i>)</span></td>
+						<td><span class="fieldvals"> {{.HouseholdsPITApril}} (<i>{{rate .HouseholdsPITApril .NumberUnits}}%</i>)</span></td>
+
+						<td class="quality">
+							<span class="fieldname">BirthDate:</span>
+							<span class="fieldvals"> {{.BirthDate}} (<i>{{rate .BirthDate .ServedClients}}%</i>)</span>
+						</td>
+						<td class="quality">
+							<span class="fieldname">Race:</span>
+							<span class="fieldvals"> {{.Race}} (<i>{{rate .Race .ServedClients}}%</i>)</span>
+						</td>
+						<td class="quality" rowspan="2"></td>
+
+					</tr>
+					<tr>
+						<td><span class="fieldname">ServedClients:</span><span class="fieldvals"> {{.ServedClients}}</span></td>
+						<td><span class="fieldname"></span><span class="fieldvals"></span></td>
+
+
+						<td><span class="fieldname">Jul {{$July}}, 2015</span></td>
+						<td><span class="fieldvals"> {{.ClientsPITJuly}} (<i>{{rate .ClientsPITJuly .NumberBeds}}%</i>)</span></td>
+						<td><span class="fieldvals"> {{.HouseholdsPITJuly}} (<i>{{rate .HouseholdsPITJuly .NumberUnits}}%</i>)</span></td>
+
+						<td class="quality">
+							<span class="fieldname">PriorLiving:</span>
+							<span class="fieldvals"> {{.PriorLiving}} (<i>{{rate .PriorLiving .ServedClients}}%</i>)</span>
+						</td>
+						<td class="quality">
+							<span class="fieldname">Ethnicity:</span>
+							<span class="fieldvals"> {{.Ethnicity}} (<i>{{rate .Ethnicity .ServedClients}}%</i>)</span>
+						</td>
+
+					</tr>
+
+
+
+<!-- 						<td><span class="fieldname">NewClients:</span><span class="fieldvals"> {{.NewClients}}</span></td>
+						<td><span class="fieldname">ExitedClients:</span><span class="fieldvals"> {{.ExitedClients}}</span></td>
+						<td><span class="fieldname">ServedHouseholds:</span><span class="fieldvals"> {{.ServedHouseholds}}</span></td>
+ -->
+				</tbody>
+			</table>
+
+			<!--
+{{.ClientsPITOctober}}
+{{.ClientsPITJanuary}}
+{{.ClientsPITApril}}
+{{.ClientsPITJuly}}
+
+{{.HouseholdsPITOctober}}
+{{.HouseholdsPITJanuary}}
+{{.HouseholdsPITApril}}
+{{.HouseholdsPITJuly}}
+		
+
+
+-->
+
+
+
+
+
+
+			<!-- <table class="card-content float-right">	
+				<tr><td class="fieldname">FullName:</td><td> {{.FullName}} (<i>{{rate .FullName .ServedClients}}%</i>)</td></tr>
+				<tr><td class="fieldname">SocialSecurity:</td><td> {{.SocialSecurity}} (<i>{{rate .SocialSecurity .ServedClients}}%</i>)</td></tr>
+				<tr><td class="fieldname">HeadHousehold:</td><td> {{.HeadHousehold}} (<i>{{rate .HeadHousehold .ServedClients}}%</i>)</td></tr>
+				<tr><td class="fieldname">BirthDate:</td><td> {{.BirthDate}} (<i>{{rate .BirthDate .ServedClients}}%</i>)</td></tr>
+				<tr><td class="fieldname">Race:</td><td> {{.Race}} (<i>{{rate .Race .ServedClients}}%</i>)</td></tr>
+				<tr><td class="fieldname">Ethnicity:</td><td> {{.Ethnicity}} (<i>{{rate .Ethnicity .ServedClients}}%</i>)</td></tr>
+				<tr><td class="fieldname">Gender:</td><td> {{.Gender}} (<i>{{rate .Gender .ServedClients}}%</i>)</td></tr>
+				<tr><td class="fieldname">VeteranStatus:</td><td> {{.VeteranStatus}} (<i>{{rate .VeteranStatus .ServedClients}}%</i>)</td></tr>
+				<tr><td class="fieldname">DisabilityStatus:</td><td> {{.DisabilityStatus}} (<i>{{rate .DisabilityStatus .ServedClients}}%</i>)</td></tr>
+				<tr><td class="fieldname">SubstanceAbuse:</td><td> {{.SubstanceAbuse}} (<i>{{rate .SubstanceAbuse .ServedClients}}%</i>)</td></tr>
+				<tr><td class="fieldname">PriorLiving:</td><td> {{.PriorLiving}} (<i>{{rate .PriorLiving .ServedClients}}%</i>)</td></tr>
+				<tr><td class="fieldname">ClientZip:</td><td> {{.ClientZip}} (<i>{{rate .ClientZip .ServedClients}}%</i>)</td></tr>
+				<tr><td class="fieldname">ChronicityStatus:</td><td> {{.ChronicityStatus}} (<i>{{rate .ChronicityStatus .ServedClients}}%</i>)</td></tr>
+				<tr><td class="fieldname">QualityScore:</td><td> {{round .QualityScore 1}}%</td></tr>
+			 --></table>
+			{{end}}
+		{{end}}
+	</div>
+</div>
+</body>
+</html>
