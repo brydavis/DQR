@@ -43,6 +43,7 @@ type Card struct {
 	ClientZip        int `json: "clientZip"`
 	ChronicityStatus int `json: "chronicityStatus"`
 	QualityScore     float64
+	Filter           bool
 }
 
 type PITs struct {
@@ -52,6 +53,8 @@ type PITs struct {
 	July int
 }
 
+type Cards []Card
+
 type Report struct {
 	Title     string
 	SubTitle  string
@@ -59,7 +62,7 @@ type Report struct {
 	Year      int
 	Source    string
 	Continuum Card
-	Cards     []Card
+	Cards
 	PITs
 }
 
@@ -81,6 +84,7 @@ func NewReport(title, subtitle, source string, month, year int, pits PITs) Repor
 
 func (report *Report) ListenAndServe(port int) {
 	http.HandleFunc("/", func(res http.ResponseWriter, req *http.Request) { RootHandler(res, req, *report) })
+	http.HandleFunc("/search/", func(res http.ResponseWriter, req *http.Request) { SearchHandler(res, req, *report) })
 	http.HandleFunc("/static/", StaticHandler)
 
 	if err := http.ListenAndServe(fmt.Sprintf(":%d", port), nil); err != nil {
@@ -131,4 +135,20 @@ func (report *Report) Run() Report {
 	report.Continuum.QualityScore = ((total / 13.0) / float64(report.Continuum.ServedClients)) * 100
 
 	return *report
+}
+
+func (cards Cards) Len() int {
+	return len(cards)
+}
+
+func (cards Cards) Less(i, j int) bool {
+	if cards[i].Agency == cards[j].Agency {
+		return cards[i].ProgramName < cards[j].ProgramName
+	} else {
+		return cards[i].Agency < cards[j].Agency
+	}
+}
+
+func (cards Cards) Swap(i, j int) {
+	cards[i], cards[j] = cards[j], cards[i]
 }

@@ -1,12 +1,21 @@
 $(document).ready(function (e) {
-	$(".qrate").each(function (i) {
-		if (parseFloat($(this).html()) < 90) {
-			console.log(parseFloat($(this).html()))
-			$(this).toggleClass("danger")
-		} else {
-			$(this).toggleClass("info")
+	$(".sidebar").css("height", $(document).height())
 
-		}
+	$("#search-bar").keyup(function (up) {
+		$.post("/search/", { search: $("#search-bar").val() }, function (data) {
+			$("div.content").html(data)
+		})
 	})
+
+
+	$("#menu-button").click(function (click) {
+		click.preventDefault()
+		$(".sidebar").toggleClass("hide")
+		$(".content").toggleClass("wide")
+	})
+
+
+
+
 })
 

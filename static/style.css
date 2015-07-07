@@ -10,11 +10,25 @@ body {
 	header.intro { 
 		position: fixed;
 		width: 100%;
-		/*background-color: hsl(220, 51%, 44%);*/
+		height: 45px;
+		background-color: #FFF;
 		/*color: hsl(0, 100%, 100%);*/
 		color: hsl(220, 51%, 44%);
 		border-bottom: 1px solid hsl(0, 1%, 1%);
+
 		}
+		#menu-button {
+			color: #d20581;
+			font-weight: 200;
+			font-size: 20px;
+			text-decoration: none;
+			float: left;
+			cursor: pointer;
+			position: absolute;
+			margin-top: 7px;
+			/*margin-bottom: 9px; */
+			margin-left: 4px;
+			}
 		.report-title { 
 			margin-top: 12px;
 			margin-bottom: 12px; 
@@ -33,14 +47,64 @@ body {
 			font-weight: 200;
 			/*background-color: hsl(220, 51%, 56%);*/
 			}
+		#search-bar {
+			min-width: 20%; 
+			padding-top: 15px;
+			padding-right: 3%;
+			padding-bottom: 13px;
+			padding-left: 3%;
+			float: right;
+			font-size: 14px;
+			outline: none;
+			border: none;
+			font-weight: 200;
+			color: #fff;
+			background-color: hsl(220, 51%, 44%);
+			}
+			#search-bar::-webkit-input-placeholder {
+				color: #fff;
+				}
+			#search-bar:-moz-placeholder { /* Firefox 18- */
+				color: #fff;  
+				}
+			#search-bar::-moz-placeholder {  /* Firefox 19+ */
+				color: #fff;  
+				}
+			#search-bar:-ms-input-placeholder {  
+				color: #fff;  
+				}
 
-	.content {
-		width: 94%;
-		margin: 0px auto;
-		padding-top: 85px;
 
+	.sidebar { 
+		position: fixed;
+		width: 30%;
+		margin-top: 45px;
+		/*background-color: #aaa;*/
+		/*color: hsl(0, 100%, 100%);*/
+		/*color: hsl(220, 51%, 44%);*/
+		/*border-bottom: 1px solid hsl(0, 1%, 1%);*/
+		border-right: 1px solid hsl(0, 1%, 1%);
 
 		}
+		.sidebar.hide {
+			/*width: 3%;*/
+			display: none;			
+			}
+		.sidebar.hide > .hide {
+			display: none;			
+			}
+
+
+
+	.content {
+		width: 100%;
+		float: right;
+		margin: 0px auto;
+		padding-top: 45px;
+		}
+		.content.wide {
+			width: 70%;
+			}
 
 
 table { 
@@ -50,6 +114,7 @@ table {
 	}
 
 
+.mini-columns { width: 10px; }
 .f16 { font-size: 16px; }
 .text-left { text-align: left; }
 .text-right { text-align: right; }

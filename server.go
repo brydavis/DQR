@@ -6,6 +6,7 @@ import (
 	"math"
 	"net/http"
 	"os"
+	"sort"
 	"strings"
 	"text/template"
 
@@ -19,12 +20,47 @@ func RootHandler(res http.ResponseWriter, req *http.Request, report Report) {
 	t, err := t.Parse(string(tmpl))
 	checkError(err)
 
-	err = t.Execute(res, report.Run())
+	report = report.Run()
+	sort.Sort(report.Cards)
+
+	err = t.Execute(res, report)
 	checkError(err)
 }
 
 func StaticHandler(res http.ResponseWriter, req *http.Request) {
 	http.ServeFile(res, req, req.URL.Path[1:])
+}
+
+func SearchHandler(res http.ResponseWriter, req *http.Request, report Report) {
+	if req.Method == "POST" {
+
+		req.ParseForm()
+		search := req.FormValue("search")
+
+		fmt.Printf("searching for... %s\n", search)
+
+		tmpl, _ := ioutil.ReadFile("views/parts/content.html")
+
+		t := template.New("").Funcs(funcMap)
+		t, err := t.Parse(string(tmpl))
+		checkError(err)
+
+		var filtered Report
+
+		filtered.October = report.October
+		filtered.January = report.January
+		filtered.April = report.April
+		filtered.July = report.July
+
+		for _, v := range report.Run().Cards {
+			if contains(v, search) {
+				filtered.Cards = append(filtered.Cards, v)
+			}
+		}
+
+		err = t.Execute(res, filtered)
+		checkError(err)
+	}
 }
 
 /*********************** TEMPLATE FUNC MAP ***********************/
@@ -96,4 +132,12 @@ func checkError(err error) {
 		fmt.Println("\nERR: ", err.Error())
 		os.Exit(1)
 	}
+}
+
+func contains(card Card, search string) bool {
+	search = strings.ToLower(search)
+	if strings.Contains(strings.ToLower(card.Agency), search) || strings.Contains(strings.ToLower(card.ProgramName), search) || strings.Contains(strings.ToLower(card.ProgramType), search) {
+		return true
+	}
+	return false
 }
