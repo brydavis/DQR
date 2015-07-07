@@ -36,6 +36,7 @@ var funcMap = template.FuncMap{
 	"acronym": acronym,
 	"crop":    crop,
 	"month":   month,
+	"capital": capital,
 }
 
 func rate(n, m int) float64 {
@@ -82,6 +83,10 @@ func month(m int) string {
 		11: "November",
 		12: "December",
 	}[m]
+}
+
+func capital(s string) string {
+	return strings.ToUpper(s)
 }
 
 /*********************** ERROR CHECKING ***********************/

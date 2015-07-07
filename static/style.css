@@ -1,13 +1,47 @@
 * { font-family: "Helvetica Neue", Helvetica, Arial; }
+body {
+	margin: 0;
+}
 
 .container {
-	margin: 6px auto;
-	width: 95%;
+	margin: 0px auto;
 	}
 
-header.intro { margin-bottom: 30px; }
-.text-left { text-align: left; }
-.text-right { text-align: right; }
+	header.intro { 
+		position: fixed;
+		width: 100%;
+		/*background-color: hsl(220, 51%, 44%);*/
+		/*color: hsl(0, 100%, 100%);*/
+		color: hsl(220, 51%, 44%);
+		border-bottom: 1px solid hsl(0, 1%, 1%);
+		}
+		.report-title { 
+			margin-top: 12px;
+			margin-bottom: 12px; 
+			margin-left: 3%;
+			float: left;
+			font-size: 14px;
+			font-weight: 700;
+			}
+		.report-subtitle {
+			padding-top: 12px;
+			padding-right: 3%;
+			padding-bottom: 12px;
+			padding-left: 3%;
+			float: right;
+			font-size: 16px;
+			font-weight: 200;
+			/*background-color: hsl(220, 51%, 56%);*/
+			}
+
+	.content {
+		width: 94%;
+		margin: 0px auto;
+		padding-top: 85px;
+
+
+		}
+
 
 table { 
 	width: 100%;
@@ -15,13 +49,20 @@ table {
 	table-layout: fixed; 
 	}
 
+
+.f16 { font-size: 16px; }
+.text-left { text-align: left; }
+.text-right { text-align: right; }
 .float-left { float: left; position: absolute; }
 .float-right { float: right; }
 .thin { font-weight: 200; }
+.bold { font-weight: 700; }
 .italic { font-style: italic; }
 .underline { text-decoration: underline; }
-.left-border { border-left: 1px dotted; }
-.right-border { border-right: 1px dotted; }
+.left-border { border-left: 1px solid; }
+.right-border { border-right: 1px solid; }
+
+
 .reports > * { font-size: 10px; }
 
 .agency {
@@ -50,7 +91,8 @@ table {
 	font-size: 12px;	
 	padding-left: 10px;
 	padding-right: 15px;
-	background-color: #d8effe;
+	/*background-color: #d8effe;*/
+	background-color: hsl(209, 74%, 94%);
 	border-bottom: 2px solid #000;
 	text-align: left;
 	padding-top: 1px;
@@ -75,7 +117,7 @@ table {
 
 td {
 	padding-right:  20px;
-	border-left:  1px dotted black;
+	border-left:  1px solid black;
 	}
 
 
@@ -84,7 +126,7 @@ td {
 	font-weight: 700;
 	padding-left: 10px;
 	padding-right: 20px;
-	/*border-left:  1px dotted black;*/
+	/*border-left:  1px solid black;*/
 	border-bottom:  0px;
 	}
 
@@ -115,7 +157,7 @@ td {
 	/*border: 2px solid #ada6ee;*/
 	padding: 20px;
 	color: #d20581;
-	border-right:  1px dotted black;
+	border-right:  1px solid black;
 
 	}
 
@@ -135,7 +177,7 @@ td {
 	font-size: 18px; 
 	/*background-color: #ada6ee;*/
 	/*border: 3px solid #ada6ee;*/
-	/*border-right:  1px dotted black;*/
+	/*border-right:  1px solid black;*/
 
 	}
 
