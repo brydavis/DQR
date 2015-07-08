@@ -58,12 +58,18 @@ func SearchHandler(res http.ResponseWriter, req *http.Request, report Report) {
 			}
 		}
 
+		sort.Sort(filtered.Cards)
+
 		err = t.Execute(res, filtered)
 		checkError(err)
 	}
 }
 
+/*****************************************************************/
+/*****************************************************************/
 /*********************** TEMPLATE FUNC MAP ***********************/
+/*****************************************************************/
+
 
 var funcMap = template.FuncMap{
 	"rate":    rate,

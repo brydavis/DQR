@@ -12,9 +12,12 @@ body {
 		width: 100%;
 		height: 45px;
 		background-color: #FFF;
-		/*color: hsl(0, 100%, 100%);*/
-		color: hsl(220, 51%, 44%);
-		border-bottom: 1px solid hsl(0, 1%, 1%);
+		color: #0D47A1; /*hsl(220, 51%, 44%);*/
+
+		/*background-color:  hsl(12, 85%, 59%);*/
+		/*color: #fff;*/
+
+		border-bottom: 1px solid #0D47A1;/* hsl(0, 1%, 1%);*/
 
 		}
 		#menu-button {
@@ -59,7 +62,7 @@ body {
 			border: none;
 			font-weight: 200;
 			color: #fff;
-			background-color: hsl(220, 51%, 44%);
+			background-color: #0D47A1; /* hsl(220, 51%, 44%);*/
 			}
 			#search-bar::-webkit-input-placeholder {
 				color: #fff;
@@ -110,7 +113,8 @@ body {
 table { 
 	width: 100%;
 	margin-bottom: 50px;
-	table-layout: fixed; 
+	table-layout: fixed;
+	border-top: 1px solid #000;
 	}
 
 
@@ -156,8 +160,7 @@ table {
 	font-size: 12px;	
 	padding-left: 10px;
 	padding-right: 15px;
-	/*background-color: #d8effe;*/
-	background-color: hsl(209, 74%, 94%);
+	background-color: #BBDEFB;/* hsl(209, 74%, 94%);*/
 	border-bottom: 2px solid #000;
 	text-align: left;
 	padding-top: 1px;
@@ -218,10 +221,9 @@ td {
 
 .score {
 	text-align: center;
-	background-color: #fed8ef;
-	/*border: 2px solid #ada6ee;*/
+	background-color: #E1BEE7; /*#fed8ef;*/
 	padding: 20px;
-	color: #d20581;
+	color: #4A148C; /*#d20581;*/
 	border-right:  1px solid black;
 
 	}
